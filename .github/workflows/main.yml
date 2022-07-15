@@ -21,7 +21,8 @@ jobs:
           echo 'Hello world'
           ls -al
           echo 'Skip step to avoid bug'
-        - name: Run python script
+      - name: Run python script
         working-directory: ./src
         run: |
             python3 pitching_machine.py
+
