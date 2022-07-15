@@ -1,0 +1,27 @@
+name: Main
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-18.04
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - bugswarm/images:ubuntu-16.04
+          - bugswarm/images:ubuntu-18.04
+          - bugswarm/images:ubuntu-20.04
+  
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run shell script
+        run: |
+          echo 'Hello world'
+          ls -al
+          echo 'Skip step to avoid bug'
+        - name: Run python script
+        working-directory: ./src
+        run: |
+            python3 pitching_machine.py
